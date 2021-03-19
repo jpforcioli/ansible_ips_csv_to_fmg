@@ -1,6 +1,8 @@
 1. Clone the git project
 
-   git clone https://github.com/jpforcioli/ansible_ips_csv_to_fmg.git
+   .. code-block::
+   
+      git clone https://github.com/jpforcioli/ansible_ips_csv_to_fmg.git
 
 2. Create and enter a python virtual environment
 
