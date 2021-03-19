@@ -1,0 +1,41 @@
+---
+- hosts: fmg1
+  connection: httpapi
+  collections:
+    - fortinet.fortimanager
+  tasks:
+    - name: Load CSV file {{ ips_csv_file | basename() }}
+      community.general.read_csv:
+        path: '{{ ips_csv_file }}'
+        fieldnames: name,sbid
+        delimiter: '@'
+      register: ips_sigs
+      delegate_to: localhost
+
+#    - name: DEBUG
+#      ansible.builtin.debug:
+#        msg: '{{ ips_sigs }}'
+
+#    - name: Upload IPS custom signatures
+#      fmgr_generic:
+#        method: add
+#        params:
+#          - url: /pm/config/adom/{{ adom_name }}/obj/ips/custom
+#            data:
+#              - tag: '{{ item.name }}'
+#                signature: '{{ item.sbid }}'
+#                rule-id: 0
+#                comment: '{{ ansible_comment }}'
+#      loop: '{{ ips_sigs.list }}'
+    
+    - name: Upload IPS custom signatures
+      fmgr_ips_custom:
+        adom: '{{ adom_name }}'
+        state: present
+        ips_custom:
+          tag: '{{ item.name }}'        
+          signature: '{{ item.sbid }}'
+          #signature: 'F-SBID()'
+          comment: '{{ ansible_comment }}'
+          rule-id: 0
+      loop: '{{ ips_sigs.list }}'

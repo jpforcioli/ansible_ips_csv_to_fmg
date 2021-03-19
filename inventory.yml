@@ -2,12 +2,14 @@ all:
   hosts:
     fmg1:
       ansible_host: 10.210.35.200
-      ansible_user: ansbible
+      ansible_user: ansible
       ansible_password: fortinet
       adom_name: ansible_ips_csv_to_fmg
+      ips_csv_file: ${PWD}/ips_sig_samples.csv
   vars:
     ansible_network_os: fortinet.fortimanager.fortimanager
     ansible_httpapi_use_ssl: yes
     ansible_httpapi_validate_certs: no
     ansible_httpapi_port: 443
     ansible_python_interpreter: ${VIRTUAL_ENV}/bin/python
+    ansible_comment: Created with ansible
