@@ -4,7 +4,7 @@
    
       git clone https://github.com/jpforcioli/ansible_ips_csv_to_fmg.git
 
-2. Create and enter a python virtual environment
+2. Create and activate a python virtual environment
 
    .. code-block::
 
