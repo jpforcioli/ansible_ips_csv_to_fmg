@@ -18,5 +18,18 @@
    .. code-block::
 
       pip install -r requirements.txt
+      ansible-galaxy collection install fortinet.fortimanager
+
+4. Edit the ``inventory.yml``
+
+   You have to update the variables describing your FortiManager IP and
+   credentials, ADOM, etc.:
+
+   .. code-block::
+
+      ansible_host: 10.210.35.200
+      ansible_user: ansbible
+      ansible_password: fortinet
+      adom_name: ansible_ips_csv_to_fmg
 
       
