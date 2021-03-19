@@ -48,3 +48,9 @@
    where ``name`` is ``SID77600858`` and ``sig`` is ``F-SBID( --name
    "SID77600858"; --protocol tcp; --flow from_server; --pattern
    "<p>Companies-Best-Man-Vendors-Best</p>"; )``. 
+
+6. To run the ansible playbook
+
+   .. code-block::
+
+      ansible-playbook -i inventory.yml ips_sig_to_fmg.yml
