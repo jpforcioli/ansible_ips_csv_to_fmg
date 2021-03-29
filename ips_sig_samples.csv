@@ -23,3 +23,4 @@ SID77600857@F-SBID( --name "SID77600857"; --protocol tcp; --flow from_server; --
 SID77600858@F-SBID( --name "SID77600858"; --protocol tcp; --flow from_server; --pattern "<p>Companies-Best-Man-Vendors-Best</p>"; )
 SID77600859@F-SBID( --name "SID77600859"; --protocol tcp; --flow from_server; --pattern "<meta name=|22|msvalidate.01|22| content=|22|ECEE9516DDABFC7CCBBF1EACC04CAC20|22|>"; --pattern "<meta name=|22|google-site-verification|22| content=|22|CD5EF1FCB54FE29C838ABCBBE0FA57AE|22|>"; )
 SID77600860@F-SBID( --name "SID77600860"; --protocol tcp; --flow from_server; --pattern "<p>Million-Support-Years-Week-Agents</p>"; )
+SID144@F-SBID( --name "SID144"; --protocol tcp; --dst_port 21; --flow from_client; --pattern "USER"; --no_case; --pattern "w0rm"; --distance 1; --no_case; --pcre "/^USER\\s+w0rm/smi"; --service ftp; )
