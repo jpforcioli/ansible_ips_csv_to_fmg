@@ -1,0 +1,24 @@
+---
+- hosts: fmg1
+  connection: httpapi
+  collections:
+    - fortinet.fortimanager
+  tasks:
+    - name: Load CSV file {{ firewall_address_csv_file | basename() }}
+      community.general.read_csv:
+        path: '{{ firewall_address_csv_file }}' 
+        fieldnames: name,subnet,color,comment
+        delimiter: ','
+      register: firewall_addresses
+      delegate_to: localhost
+
+    - name: Upload Firewall Addresses
+      fmgr_firewall_address:
+        adom: '{{ adom_name }}'
+        state: present
+        firewall_address:
+          name: '{{ item.name }}'
+          subnet: '{{ item.subnet }}'
+          color: '{{ item.color }}'
+          comment: '{{ item.comment }}'
+      loop: '{{ firewall_addresses.list }}'

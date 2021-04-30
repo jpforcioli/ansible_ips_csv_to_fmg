@@ -4,8 +4,9 @@ all:
       ansible_host: 10.210.35.200
       ansible_user: ansible
       ansible_password: fortinet
-      adom_name: ansible_ips_csv_to_fmg
+      adom_name: demo_001
       ips_csv_file: ${PWD}/ips_sig_samples.csv
+      firewall_address_csv_file: ${PWD}/firewall_address_samples.csv
   vars:
     ansible_network_os: fortinet.fortimanager.fortimanager
     ansible_httpapi_use_ssl: yes
