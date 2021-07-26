@@ -1,5 +1,5 @@
 ---
-- hosts: fmg1
+- hosts: "{{ target | default('10.210.35.200') }}"
   connection: httpapi
   collections:
     - fortinet.fortimanager
