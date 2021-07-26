@@ -16,8 +16,13 @@
       debug:
         msg: "{{ firewall_addresses }}"
 
-    - name: Upload Firewall Addresses in ADOMs
-      include_tasks: fmg_add_firewall_address.yml
-      loop: [ adom1, adom2 ]
-      loop_control:
-        loop_var: adom
+    - name: Upload Firewall Addresses
+      fmgr_firewall_address:
+        adom: '{{ adom_name }}'
+        state: "{{ action }}"
+        firewall_address:
+          name: '{{ item.name }}'
+          subnet: '{{ item.subnet }}'
+          color: '{{ item.color }}'
+          comment: '{{ item.comment }}'
+      loop: '{{ firewall_addresses.list }}'

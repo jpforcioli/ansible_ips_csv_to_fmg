@@ -1,4 +1,5 @@
 host_jpf_001,10.0.0.1/32,1,object test1
 host_jpf_002,10.0.0.2/32,2,object test2
 host_jpf_003,10.0.0.3/32,3,object test3
-host_jpf_004,10.0.0.3/32,4,object test4
+host_jpf_004,10.0.0.4/32,4,object test4
+host_jpf_005,10.0.0.5/32,4,object test4

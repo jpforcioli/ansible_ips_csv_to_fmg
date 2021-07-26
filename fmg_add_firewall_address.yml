@@ -1,0 +1,11 @@
+---
+- name: Add Firewall Addresses in ADOM "{{ adom }}"
+  fmgr_firewall_address:
+    adom: '{{ adom }}'
+    state: "{{ action }}"
+    firewall_address:
+      name: '{{ item.name }}'
+      subnet: '{{ item.subnet }}'
+      color: '{{ item.color }}'
+      comment: '{{ item.comment }}'
+  loop: '{{ firewall_addresses.list }}'
