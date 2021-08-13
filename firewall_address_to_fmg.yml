@@ -8,7 +8,7 @@
       community.general.read_csv:
         path: '{{ firewall_address_csv_file }}' 
         fieldnames: name,subnet,color,comment
-        delimiter: ','
+        delimiter: ';'
       register: firewall_addresses
       delegate_to: localhost
 
