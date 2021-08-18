@@ -1,0 +1,27 @@
+---
+- hosts: "{{ target | default('10.210.35.200') }}"
+  connection: httpapi
+  collections:
+    - fortinet.fortimanager
+  vars_files:
+    - global_variables.yml
+  tasks:
+    - name: Load CSV file {{ firewall_policy_csv_file | basename() }}
+      community.general.read_csv:
+        path: '{{ firewall_policy_csv_file }}' 
+        fieldnames: policyid,name,srcintf,dstintf,srcaddr,dstaddr,service,action,schedule,comments
+        delimiter: ';'
+      register: firewall_policies
+      delegate_to: localhost
+
+    - name: Show CSV-collected firewall policies
+      debug:
+        msg: "{{ firewall_policies }}"
+
+    - name: Add firewall policies in FortiManager
+      include_tasks: tasks/fmg_add_firewall_policy.yml
+      vars:
+        - ppkg_name: ppkg_001
+      loop: [adom1]
+      loop_control:
+        loop_var: adom

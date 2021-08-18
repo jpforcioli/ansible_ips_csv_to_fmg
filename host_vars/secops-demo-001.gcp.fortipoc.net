@@ -1,0 +1,3 @@
+---
+ansible_host: secops-demo-001.gcp.fortipoc.net
+ansible_httpapi_port: 10421

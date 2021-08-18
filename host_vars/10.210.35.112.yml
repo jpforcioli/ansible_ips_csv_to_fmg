@@ -1,7 +1,2 @@
 ---
 ansible_host: 10.210.35.112
-ansible_user: devops
-ansible_password: fortinet
-adom_name: lseg
-ips_csv_file: ${PWD}/ips_sig_samples.csv
-firewall_address_csv_file: ${PWD}/firewall_address_samples.csv

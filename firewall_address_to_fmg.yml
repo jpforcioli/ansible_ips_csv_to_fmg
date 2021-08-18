@@ -3,6 +3,9 @@
   connection: httpapi
   collections:
     - fortinet.fortimanager
+  vars_files:
+    - global_variables.yml
+    
   tasks:
     - name: Load CSV file {{ firewall_address_csv_file | basename() }}
       community.general.read_csv:
@@ -12,12 +15,13 @@
       register: firewall_addresses
       delegate_to: localhost
 
-    - name: DEBUG
+    - name: Show CSV-collected firewall addresses
       debug:
         msg: "{{ firewall_addresses }}"
 
-    - name: Upload Firewall Addresses in ADOMs
-      include_tasks: fmg_add_firewall_address.yml
-      loop: [ adom1, adom2 ]
+    - name: Add firewall addresses in FortiManager
+      include_tasks: tasks/fmg_add_firewall_address.yml
+      #loop: [ adom1, adom2 ]
+      loop: [adom1]
       loop_control:
         loop_var: adom

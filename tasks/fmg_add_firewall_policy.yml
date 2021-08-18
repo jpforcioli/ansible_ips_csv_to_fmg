@@ -1,0 +1,19 @@
+---
+- name: Add firewall policies in {{ adom }}/{{ ppkg_name }}
+  fmgr_pkg_firewall_policy:
+    adom: "{{ adom }}"
+    state: "{{ action | default('present') }}"
+    pkg: "{{ ppkg_name }}"
+    bypass_validation: true
+    pkg_firewall_policy:
+      policyid: "{{ item.policyid }}"
+      name: "{{ item.name }}"
+      srcintf: "{{ item.srcintf.split(',') }}"
+      dstintf: "{{ item.dstintf.split(',') }}"
+      srcaddr: "{{ item.srcaddr.split(',') }}"
+      dstaddr: "{{ item.dstaddr.split(',') }}"
+      service: "{{ item.service.split(',') }}"
+      schedule: "{{ item.schedule }}"
+      comments: "{{ item.comments }}"
+      action: "{{ item.action }}"
+  loop: "{{ firewall_policies.list }}"

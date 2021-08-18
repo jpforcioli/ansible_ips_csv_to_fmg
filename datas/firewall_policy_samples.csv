@@ -1,0 +1,2 @@
+1;policy_001;port1;port2;host_jpf_001;host_jpf_002,host_jpf_004;ALL;accept;always;Created with ansible
+2;policy_002;port3,port4;port5;host_jpf_003;host_jpf_004;ALL;accept;always;Created with ansible

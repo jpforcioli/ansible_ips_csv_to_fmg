@@ -3,6 +3,8 @@
   connection: httpapi
   collections:
     - fortinet.fortimanager
+  vars_files:
+    - global_variables.yml    
   tasks:
     - name: Load CSV file {{ ips_csv_file | basename() }}
       community.general.read_csv:
